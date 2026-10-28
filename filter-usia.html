@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrasi Pengunjung</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #5b3fa0, #2d7ff9);
+    }
+    .card {
+      background: #fff;
+      width: 360px;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+    }
+    h2 { margin: 0 0 20px; text-align: center; color: #333; }
+    label { display: block; margin: 12px 0 4px; font-weight: bold; color: #444; }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    input:focus { outline: none; border-color: #5b3fa0; }
+    .buttons { display: flex; gap: 10px; margin-top: 22px; }
+    button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #fff;
+    }
+    #btnProses { background: #2d7ff9; }
+    #btnClear  { background: #888; }
+    button:hover { opacity: .85; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Registrasi Pengunjung</h2>
+
+    <label for="nama">Nama</label>
+    <input type="text" id="nama" placeholder="Masukkan nama">
+
+    <label for="usia">Usia</label>
+    <input type="number" id="usia" placeholder="Masukkan usia" min="0">
+
+    <div class="buttons">
+      <button id="btnProses">PROSES</button>
+      <button id="btnClear">CLEAR</button>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+
+      // Tombol PROSES
+      $("#btnProses").click(function () {
+        var nama = $("#nama").val().trim();
+        var usia = $("#usia").val().trim();
+
+        // Validasi input kosong
+        if (nama === "" || usia === "") {
+          alert("Nama dan usia harus diisi!");
+          return;
+        }
+
+        usia = parseInt(usia);
+
+        // Cek usia: jika 27 tahun ke atas boleh masuk
+        if (usia >= 27) {
+          alert("HELLO, " + nama.toUpperCase() + "\nANDA BOLEH MASUK");
+        } else {
+          alert("ANDA TIDAK BOLEH MASUK");
+        }
+      });
+
+      // Tombol CLEAR: kosongkan isi textfield nama & usia
+      $("#btnClear").click(function () {
+        $("#nama").val("");
+        $("#usia").val("");
+        $("#nama").focus();
+      });
+
+    });
+  </script>
+
+</body>
+</html>
